@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Aurys: Agentes de IA que convierten la complejidad operativa en claridad estratégica. Soluciones especializadas para contenido, RRHH, y desarrollo.">
+    <meta name="description" content="Aurys: Agentes de IA y frameworks de aceleración que convierten la complejidad operativa en claridad estratégica y crecimiento exponencial.">
     <title>Aurys - Claridad en la Complejidad</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,7 +73,7 @@
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
             text-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
         }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
         .nav-links a {
             text-decoration: none; color: var(--star-white); font-weight: 500;
             transition: all 0.3s; position: relative;
@@ -217,6 +217,21 @@
         .package-features li { color: var(--nebula-gray); margin-bottom: 1rem; padding-left: 2rem; position: relative; }
         .package-features li::before { content: '✨'; position: absolute; left: 0; top: 0; font-size: 1.2rem; }
 
+        /* Framework Section */
+        .framework-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+        .framework-card {
+            background: rgba(11, 12, 26, 0.8); backdrop-filter: blur(20px);
+            border: 1px solid rgba(138, 43, 226, 0.3); padding: 2.5rem; border-radius: 20px;
+            display: flex; flex-direction: column;
+        }
+        .framework-card h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--aurora-violet); }
+        .framework-card .phase-label { font-weight: 700; color: var(--star-white); display: block; margin-bottom: 1rem; }
+        .framework-card .meta-info { font-size: 0.9rem; color: var(--nebula-gray); margin: 1rem 0; border-top: 1px solid rgba(138, 43, 226, 0.2); padding-top: 1rem; }
+        .framework-card ul { list-style: none; padding: 0; flex-grow: 1; }
+        .framework-card li { margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative; font-size: 0.95rem; }
+        .framework-card li::before { content: '›'; position: absolute; left: 0; color: var(--aurora-violet); font-weight: 700; }
+        .framework-cta { margin-top: 2rem; }
+
         /* Referrals Section */
         .referrals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; }
         .referral-card {
@@ -277,7 +292,7 @@
             .hero-content h1 { font-size: 3rem; }
             .hero-content .strategy-tagline { font-size: 1.3rem; }
             .section-title { font-size: 2.5rem; }
-            .methodology-grid, .packages-grid, .referrals-grid { grid-template-columns: 1fr; }
+            .methodology-grid, .packages-grid, .referrals-grid, .framework-grid { grid-template-columns: 1fr; }
             .case-content { padding: 2.5rem 1.5rem; }
             .case-stats { grid-template-columns: 1fr; gap: 2rem; }
             .footer-content { text-align: center; grid-template-columns: 1fr; }
@@ -297,8 +312,8 @@
             <div class="logo">Aurys</div>
             <ul class="nav-links">
                 <li><a href="#ciencia">La Ciencia</a></li>
-                <li><a href="#casos">Resultados</a></li>
                 <li><a href="#agentes">Agentes</a></li>
+                <li><a href="#framework">Framework</a></li>
                 <li><a href="#referidos">Referidos</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
@@ -506,7 +521,63 @@
             </div>
         </section>
 
-        <section class="referrals section section-accent-gradient" id="referidos">
+        <section class="framework section section-accent-gradient" id="framework">
+            <div class="container">
+                <h2 class="section-title">Framework de Aceleración Aurys</h2>
+                <p class="section-subtitle">
+                    Para fundadores y empresas visionarias. No solo te damos herramientas, nos convertimos en tu socio tecnológico para construir, lanzar y escalar tu negocio con una base de IA.
+                </p>
+                <div class="framework-grid">
+                    <article class="framework-card">
+                        <span class="phase-label">FASE 1</span>
+                        <h3>Estrategia y Validación</h3>
+                        <ul>
+                            <li>Validación de mercado y análisis competitivo.</li>
+                            <li>Diseño de modelo de negocio con enfoque AI-First.</li>
+                            <li>Estrategia Go-to-Market y posicionamiento.</li>
+                            <li>Proyecciones financieras y roadmap de capital.</li>
+                        </ul>
+                        <div class="meta-info">
+                            <strong>Inversión:</strong> $8,000 - $12,000 USD<br>
+                            <strong>Duración:</strong> 4-6 Semanas
+                        </div>
+                    </article>
+                    <article class="framework-card">
+                        <span class="phase-label">FASE 2</span>
+                        <h3>Desarrollo e Implementación</h3>
+                        <ul>
+                            <li>Desarrollo del núcleo de IA a medida (Tu IP).</li>
+                            <li>Integración, testing y optimización del sistema.</li>
+                            <li>Documentación y manuales de operación.</li>
+                            <li>Aseguramiento de calidad y benchmarking.</li>
+                        </ul>
+                         <div class="meta-info">
+                            <strong>Inversión:</strong> $20,000 - $35,000 USD<br>
+                            <strong>Duración:</strong> 6-10 Semanas
+                        </div>
+                    </article>
+                    <article class="framework-card">
+                         <span class="phase-label">FASE 3</span>
+                        <h3>Partnership y Escala</h3>
+                        <ul>
+                            <li>Partnership estratégico (Equity/Rev-share).</li>
+                            <li>Asesoría mensual a nivel directivo.</li>
+                            <li>Soporte y optimización tecnológica continua.</li>
+                            <li>Estrategias de crecimiento y salida.</li>
+                        </ul>
+                         <div class="meta-info">
+                            <strong>Inversión:</strong> Partnership a largo plazo<br>
+                            <strong>Duración:</strong> Continuo
+                        </div>
+                    </article>
+                </div>
+                 <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#contacto" class="cta-primary">Aplicar al Framework</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="referrals section" id="referidos">
             <div class="container">
                 <h2 class="section-title">Expande la Aurora</h2>
                 <p class="section-subtitle">
@@ -625,7 +696,7 @@
             });
         }, observerOptions);
         // Observe elements for animation
-        document.querySelectorAll('.methodology-card, .product-card, .package-card, .case-content, .system-card, .referral-card').forEach(el => {
+        document.querySelectorAll('.methodology-card, .product-card, .package-card, .case-content, .system-card, .referral-card, .framework-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(40px)';
             observer.observe(el);
