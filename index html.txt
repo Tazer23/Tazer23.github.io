@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aurys: Agentes de IA que convierten la complejidad operativa en claridad estratégica. Soluciones especializadas para contenido, RRHH, y desarrollo.">
+    <title>Aurys - Donde la Complejidad se Transforma en Claridad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --aurora-cyan: #00FFFF;
+            --aurora-violet: #8A2BE2;
+            --aurora-green: #00FF7F;
+            --aurora-pink: #FF1493;
+            --deep-space: #0B0C1A;
+            --cosmic-blue: #1A1B3A;
+            --star-white: #F8FAFC;
+            --nebula-gray: #94A3B8;
+            --animation-speed: 25s;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--star-white);
+            background: radial-gradient(ellipse at top, var(--cosmic-blue) 0%, var(--deep-space) 70%);
+            overflow-x: hidden;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Aurora Background Animation */
+        .aurora-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: -1; opacity: 0.15;
+        }
+        .aurora-strip {
+            position: absolute; height: 300px;
+            background: linear-gradient(90deg, transparent 0%, var(--aurora-cyan) 25%, var(--aurora-violet) 50%, var(--aurora-green) 75%, transparent 100%);
+            filter: blur(50px);
+            animation: auroraMove var(--animation-speed) ease-in-out infinite;
+        }
+        .aurora-strip:nth-child(1) { top: 10%; left: -50%; width: 200%; animation-delay: 0s; }
+        .aurora-strip:nth-child(2) {
+            top: 40%; left: -50%; width: 200%; animation-delay: -8s;
+            background: linear-gradient(90deg, transparent 0%, var(--aurora-pink) 25%, var(--aurora-cyan) 50%, var(--aurora-violet) 75%, transparent 100%);
+        }
+        .aurora-strip:nth-child(3) {
+            top: 70%; left: -50%; width: 200%; animation-delay: -16s;
+            background: linear-gradient(90deg, transparent 0%, var(--aurora-green) 25%, var(--aurora-pink) 50%, var(--aurora-cyan) 75%, transparent 100%);
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(11, 12, 26, 0.9); backdrop-filter: blur(20px);
+            padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+        }
+        .nav { display: flex; align-items: center; justify-content: space-between; }
+        .logo {
+            font-size: 2rem; font-weight: 800;
+            background: linear-gradient(135deg, var(--aurora-cyan) 0%, var(--aurora-violet) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: var(--star-white); font-weight: 500;
+            transition: all 0.3s; position: relative;
+        }
+        .nav-links a:hover { color: var(--aurora-cyan); text-shadow: 0 0 10px var(--aurora-cyan); }
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -8px; left: 50%;
+            background: linear-gradient(90deg, var(--aurora-cyan), var(--aurora-violet));
+            transition: all 0.3s ease; transform: translateX(-50%);
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .menu-toggle .bar { width: 25px; height: 3px; background: linear-gradient(90deg, var(--aurora-cyan), var(--aurora-violet)); border-radius: 5px; transition: all 0.3s ease-in-out; }
+        
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 120px; text-align: center; min-height: 100vh;
+            display: flex; align-items: center; position: relative; overflow: hidden;
+        }
+        .hero-content { position: relative; z-index: 2; }
+        .hero-content h1 {
+            font-size: 4.2rem; font-weight: 800; margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--star-white) 0%, var(--aurora-cyan) 50%, var(--star-white) 100%);
+            background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            animation: auroraText 8s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(0, 255, 255, 0.3); line-height: 1.2;
+        }
+        .hero-content .strategy-tagline {
+            font-size: 1.8rem; margin-bottom: 2rem; font-weight: 500;
+            color: var(--star-white); text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+        .hero-content .brand-story {
+            font-size: 1.2rem; margin-bottom: 3rem; max-width: 800px;
+            margin-left: auto; margin-right: auto; opacity: 0.95;
+            line-height: 1.8; color: var(--nebula-gray);
+        }
+        .cta-primary {
+            background: linear-gradient(135deg, var(--aurora-cyan) 0%, var(--aurora-violet) 100%);
+            color: var(--deep-space); padding: 20px 60px; font-size: 1.3rem; font-weight: 700;
+            border: none; border-radius: 50px; cursor: pointer; transition: all 0.4s ease;
+            text-decoration: none; display: inline-block;
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+        }
+        .cta-primary:hover { transform: translateY(-8px) scale(1.05); box-shadow: 0 0 60px rgba(138, 43, 226, 0.6); }
+        
+        /* Methodology Section */
+        .methodology { padding: 120px 0; position: relative; }
+        .methodology h2 {
+            font-size: 3.5rem; font-weight: 800; text-align: center; margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--aurora-cyan) 0%, var(--aurora-violet) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .methodology-subtitle {
+            font-size: 1.4rem; text-align: center; margin-bottom: 5rem;
+            color: var(--nebula-gray); max-width: 800px; margin: 0 auto 5rem auto;
+            line-height: 1.7;
+        }
+        .methodology-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; }
+        .methodology-card {
+            background: rgba(11, 12, 26, 0.6); backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 3.5rem; border-radius: 25px; text-align: center;
+            transition: all 0.5s ease;
+        }
+        .methodology-card:hover { transform: translateY(-15px); border-color: var(--aurora-cyan); box-shadow: 0 20px 60px rgba(0, 255, 255, 0.2); }
+        .methodology-icon {
+            width: 80px; height: 80px; margin: 0 auto 2rem;
+            background: linear-gradient(135deg, var(--aurora-cyan), var(--aurora-violet));
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+        .methodology-icon svg { width: 40px; height: 40px; stroke: var(--deep-space); stroke-width: 2.5; }
+        .methodology-card h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--star-white); }
+        .methodology-card p { color: var(--nebula-gray); font-size: 1.1rem; line-height: 1.7; }
+        
+        /* System Section */
+        .system-section { padding: 120px 0; background: linear-gradient(135deg, rgba(0, 255, 255, 0.03) 0%, rgba(138, 43, 226, 0.03) 100%); }
+        .system-section h2 { font-size: 3.2rem; font-weight: 800; text-align: center; margin-bottom: 2rem; color: var(--star-white); }
+        .system-subtitle { font-size: 1.4rem; text-align: center; margin-bottom: 5rem; color: var(--nebula-gray); max-width: 700px; margin: 0 auto 5rem auto; }
+        .system-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; }
+        .system-card {
+            background: rgba(11, 12, 26, 0.7); backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.15);
+            padding: 3rem; border-radius: 20px; transition: all 0.4s ease;
+        }
+        .system-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0, 255, 255, 0.15); border-color: var(--aurora-cyan); }
+        .system-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--aurora-cyan); }
+        .system-card p { color: var(--nebula-gray); line-height: 1.7; }
+        
+        /* Case Study */
+        .case-study { background: linear-gradient(135deg, var(--aurora-cyan) 0%, var(--aurora-violet) 100%); padding: 120px 0; color: var(--deep-space); position: relative; }
+        .case-study h2, .case-study h3, .case-study .case-study-subtitle, .case-study .case-quote, .case-study .stat-label { color: var(--deep-space); }
+        .case-content {
+            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(20px);
+            padding: 4.5rem; border-radius: 30px; border: 1px solid rgba(11, 12, 26, 0.2);
+            position: relative; z-index: 2;
+        }
+        .case-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .stat { text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.1); border-radius: 15px; backdrop-filter: blur(10px); }
+        .stat-number {
+            font-size: 3rem; font-weight: 800; display: block; margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--deep-space) 0%, var(--cosmic-blue) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .stat-label { font-weight: 600; }
+        
+        /* Products Section */
+        .products { padding: 120px 0; }
+        .products h2 {
+            font-size: 3.2rem; font-weight: 800; text-align: center; margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--aurora-cyan) 0%, var(--aurora-violet) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .products-subtitle { font-size: 1.4rem; text-align: center; margin-bottom: 5rem; color: var(--nebula-gray); max-width: 800px; margin: 0 auto 5rem auto; }
+        .products-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+        .product-card {
+            background: rgba(11, 12, 26, 0.6); backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 255, 255, 0.2); padding: 2.5rem; border-radius: 25px;
+            transition: all 0.5s ease; display: flex; flex-wrap: wrap; align-items: center;
+            position: relative;
+        }
+        .product-card:hover { transform: translateY(-15px); box-shadow: 0 25px 70px rgba(0, 255, 255, 0.2); border-color: var(--aurora-cyan); }
+        .product-info { flex: 2; min-width: 300px; text-align: left; padding-right: 2rem; }
+        .product-deliverables { flex: 1; min-width: 280px; background: rgba(11, 12, 26, 0.8); border-radius: 15px; padding: 2rem; border: 1px solid rgba(0, 255, 255, 0.1); }
+        .product-icon {
+            width: 80px; height: 80px; margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--aurora-cyan), var(--aurora-violet));
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+        }
+        .product-icon svg { width: 40px; height: 40px; fill: var(--deep-space); }
+        .product-info h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem; color: var(--star-white); }
+        .product-price { font-size: 1.6rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--aurora-cyan); }
+        .product-price span { font-size: 1rem; font-weight: 400; color: var(--nebula-gray); }
+        .product-info p { color: var(--nebula-gray); margin-bottom: 2rem; }
+        .product-deliverables h4 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--aurora-cyan); }
+        .product-deliverables ul { list-style: none; padding: 0; }
+        .product-deliverables li { color: var(--nebula-gray); margin-bottom: 1rem; padding-left: 2rem; position: relative; }
+        .product-deliverables li::before { content: '✓'; position: absolute; left: 0; color: var(--aurora-green); }
+        .cta-secondary {
+            background: transparent; color: var(--aurora-cyan); border: 2px solid var(--aurora-cyan);
+            padding: 12px 35px; border-radius: 30px; cursor: pointer; transition: all 0.3s ease;
+            text-decoration: none; display: inline-block; font-weight: 600;
+        }
+        .cta-secondary:hover { background-color: var(--aurora-cyan); color: var(--deep-space); transform: translateY(-3px) scale(1.05); }
+        .badge {
+            position: absolute; top: 1.5rem; right: 1.5rem; background: var(--aurora-pink); color: var(--star-white);
+            padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.5);
+        }
+
+        /* Packages Section */
+        .packages { padding: 120px 0; background: linear-gradient(135deg, rgba(0, 255, 255, 0.03) 0%, rgba(138, 43, 226, 0.03) 100%); }
+        .packages h2 {
+            font-size: 3.2rem; font-weight: 800; text-align: center; margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--aurora-cyan) 0%, var(--aurora-violet) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .packages-subtitle { font-size: 1.4rem; text-align: center; margin-bottom: 5rem; color: var(--nebula-gray); max-width: 800px; margin: 0 auto 5rem auto; }
+        .packages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; align-items: start; }
+        .package-card {
+            background: rgba(11, 12, 26, 0.7); backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 255, 255, 0.2); padding: 3.5rem; border-radius: 25px;
+            text-align: center; transition: all 0.5s ease; position: relative;
+        }
+        .package-card.featured { border: 2px solid var(--aurora-cyan); transform: scale(1.05); box-shadow: 0 0 50px rgba(0, 255, 255, 0.2); }
+        .package-badge {
+            background: linear-gradient(135deg, var(--aurora-cyan) 0%, var(--aurora-violet) 100%);
+            color: var(--deep-space); font-weight: 700; padding: 10px 25px; border-radius: 25px;
+            font-size: 0.95rem; position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+        }
+        .package-card h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--star-white); }
+        .package-price { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--aurora-cyan); }
+        .package-savings { font-size: 1rem; color: var(--aurora-green); margin-bottom: 2rem; font-weight: 500; }
+        .package-features { list-style: none; margin-bottom: 2.5rem; text-align: left; padding-left: 0; }
+        .package-features li { color: var(--nebula-gray); margin-bottom: 1rem; padding-left: 2rem; position: relative; }
+        .package-features li::before { content: '✨'; position: absolute; left: 0; top: 0; font-size: 1.2rem; }
+
+        /* Referrals Section */
+        .referrals { padding: 120px 0; }
+        .referrals h2 {
+            font-size: 3.2rem; font-weight: 800; text-align: center; margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--aurora-cyan) 0%, var(--aurora-green) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .referrals-subtitle { font-size: 1.4rem; text-align: center; margin-bottom: 5rem; color: var(--nebula-gray); max-width: 800px; margin: 0 auto 5rem auto; }
+        .referrals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; }
+        .referral-card {
+            background: rgba(11, 12, 26, 0.7); backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 127, 0.2); padding: 2.5rem; border-radius: 20px;
+        }
+        .referral-card h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--aurora-green); }
+        .referral-card ul { list-style: none; padding: 0; }
+        .referral-card li { margin-bottom: 1rem; padding-left: 1.5rem; position: relative; }
+        .referral-card li strong { color: var(--star-white); }
+        .referral-card li::before { content: '›'; position: absolute; left: 0; color: var(--aurora-green); font-weight: 700; }
+
+        /* Final CTA */
+        .final-cta { padding: 120px 0; text-align: center; }
+        .final-cta h2 {
+            font-size: 3.5rem; font-weight: 800; margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--aurora-cyan) 0%, var(--aurora-violet) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .final-cta p { font-size: 1.3rem; margin-bottom: 3rem; color: var(--nebula-gray); max-width: 700px; margin: 0 auto 3rem auto; }
+        
+        /* Form Styling */
+        .contact-form { max-width: 600px; margin: 0 auto; }
+        .form-group { margin-bottom: 1.5rem; text-align: left; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--nebula-gray); }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 1rem; border-radius: 10px; border: 1px solid rgba(0, 255, 255, 0.2);
+            background: rgba(11, 12, 26, 0.8); color: var(--star-white); font-family: 'Poppins', sans-serif;
+            font-size: 1rem; transition: all 0.3s ease;
+        }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--aurora-cyan); box-shadow: 0 0 15px rgba(0, 255, 255, 0.3); }
+        .form-submit {
+            background: linear-gradient(135deg, var(--aurora-cyan) 0%, var(--aurora-violet) 100%);
+            color: var(--deep-space); padding: 1rem 2.5rem; font-size: 1.2rem; font-weight: 700;
+            border: none; border-radius: 50px; cursor: pointer; transition: all 0.4s ease;
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.4); width: 100%;
+        }
+        .form-submit:hover { transform: scale(1.05); box-shadow: 0 0 60px rgba(138, 43, 226, 0.6); }
+
+        /* Footer */
+        .footer { background: var(--deep-space); color: var(--nebula-gray); padding: 80px 0 30px; border-top: 1px solid rgba(0, 255, 255, 0.1); }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; margin-bottom: 3rem; text-align: left; }
+        .footer-section h3 {
+            font-size: 1.6rem; font-weight: 700; margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--aurora-cyan) 0%, var(--aurora-violet) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .footer-bottom { border-top: 1px solid rgba(0, 255, 255, 0.1); padding-top: 2rem; opacity: 0.6; }
+        
+        /* Animations */
+        @keyframes auroraMove { 0%, 100% { transform: translateX(-50%) translateY(0px); } 50% { transform: translateX(-30%) translateY(-20px); } }
+        @keyframes auroraText { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
+                background: rgba(11, 12, 26, 0.95); backdrop-filter: blur(20px);
+                flex-direction: column; justify-content: center; align-items: center;
+                box-shadow: -20px 0 40px rgba(0, 0, 0, 0.3); transition: right 0.4s ease-in-out;
+                gap: 3rem; border-left: 1px solid rgba(0, 255, 255, 0.2);
+            }
+            .nav-links.active { right: 0; }
+            .menu-toggle { display: flex; z-index: 1001; }
+            .menu-toggle.active .bar:nth-child(1) { transform: rotate(-45deg) translate(-6px, 6px); }
+            .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+            .menu-toggle.active .bar:nth-child(3) { transform: rotate(45deg) translate(-6px, -6px); }
+            .hero-content h1 { font-size: 3rem; }
+            .hero-content .strategy-tagline { font-size: 1.5rem; }
+            .methodology h2, .products h2, .packages h2, .referrals h2, .final-cta h2 { font-size: 2.5rem; }
+            .system-section h2 { font-size: 2.8rem; }
+            .methodology-grid, .packages-grid, .referrals-grid { grid-template-columns: 1fr; }
+            .case-content { padding: 2.5rem 1.5rem; }
+            .case-stats { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-content { text-align: center; grid-template-columns: 1fr; }
+            .product-info { padding-right: 0; margin-bottom: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="aurora-bg">
+        <div class="aurora-strip"></div>
+        <div class="aurora-strip"></div>
+        <div class="aurora-strip"></div>
+    </div>
+
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">Aurys</div>
+            <ul class="nav-links">
+                <li><a href="#metodologia">Metodología</a></li>
+                <li><a href="#casos">Resultados</a></li>
+                <li><a href="#productos">Agentes</a></li>
+                <li><a href="#referidos">Referidos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Donde la Complejidad Operativa se Transforma en Claridad Estratégica</h1>
+                    <p class="strategy-tagline">Aurys: El Sistema de IA que Ilumina el Potencial de tu Negocio</p>
+                    <p class="brand-story">
+                        Deja de luchar contra el caos de procesos manuales, la falta de tiempo y los datos dispersos. Aurys es un ecosistema de agentes de inteligencia artificial especializados que convierten tus mayores desafíos en tus ventajas competitivas más brillantes.
+                    </p>
+                    <a href="#metodologia" class="cta-primary">Descubre la Metodología</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="methodology" id="metodologia">
+            <div class="container">
+                <h2>La Ciencia Detrás de la Claridad</h2>
+                <p class="methodology-subtitle">
+                    La claridad en los negocios no es magia, es una metodología. Aurys no solo automatiza, sino que orquesta una estrategia basada en tres pilares para garantizar el crecimiento y el ROI de tu inversión.
+                </p>
+                <div class="methodology-grid">
+                    <article class="methodology-card">
+                        <div class="methodology-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        </div>
+                        <h3>El Caos Operativo</h3>
+                        <p>La complejidad, los datos dispersos y los procesos manuales que consumen tu energía y ocultan oportunidades de crecimiento en tu negocio.</p>
+                    </article>
+                    <article class="methodology-card">
+                        <div class="methodology-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                        </div>
+                        <h3>El Sistema Aurys</h3>
+                        <p>Un ecosistema de agentes especializados que actúan como un campo magnético, canalizando el caos hacia patrones de eficiencia y resultados predecibles.</p>
+                    </article>
+                    <article class="methodology-card">
+                        <div class="methodology-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+                        </div>
+                        <h3>La Claridad Medible</h3>
+                        <p>El resultado final: claridad deslumbrante, tiempo recuperado, decisiones acertadas y un crecimiento visible que se convierte en tu mayor ventaja competitiva.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        
+        <section class="system-section">
+            <div class="container">
+                <h2>Tu Ecosistema, No Solo un Manual</h2>
+                <p class="system-subtitle">
+                    No estás comprando un PDF con prompts. Adquieres un sistema de inteligencia pre-configurado, diseñado para darte consistencia y calidad superior en diversas áreas de tu negocio.
+                </p>
+                <div class="system-cards">
+                    <div class="system-card">
+                        <h3>Sistema Pre-Configurado</h3>
+                        <p>Recibes Agentes listos para usar, con la "personalidad", el tono y los conocimientos base de un experto en su respectiva área.</p>
+                    </div>
+                    <div class="system-card">
+                        <h3>Flujo de Trabajo Optimizado</h3>
+                        <p>Te entregamos el proceso exacto para alimentar a cada agente con tu conocimiento específico y obtener resultados predecibles y de alta calidad.</p>
+                    </div>
+                    <div class="system-card">
+                        <h3>Activo Digital Permanente</h3>
+                        <p>Con un pago único, este sistema se convierte en un activo de tu empresa. Un motor de eficiencia que trabaja para ti, para siempre.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-study" id="casos">
+            <div class="container">
+                <h2>Resultados que Iluminan la Operación</h2>
+                <p class="case-study-subtitle">Transformación Real: Despacho Fiscal Mexicano</p>
+                <article class="case-content">
+                    <h3>De la Complejidad del SAT a la Claridad Absoluta</h3>
+                    <p>Un despacho fiscal se ahogaba en el procesamiento manual de CFDIs. Intentaron usar IA genérica, pero las alucinaciones y errores en los cálculos eran inaceptables.</p>
+                    <div class="case-stats">
+                        <div class="stat">
+                            <span class="stat-number">70%</span>
+                            <span class="stat-label">Más Rápido en Procesar CFDIs</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">95%</span>
+                            <span class="stat-label">Precisión en Cálculos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">0</span>
+                            <span class="stat-label">Nuevas Contrataciones</span>
+                        </div>
+                    </div>
+                    <p class="case-quote">
+                        "Aurys fue la solución que la IA genérica nos prometió pero nunca cumplió. Pasamos de desconfiar de los resultados a tener un sistema con 95% de precisión que no requiere capacitación. Ahora dedicamos más tiempo a nuestros clientes, mientras el Agente Aurys realiza el trabajo pesado."
+                         <br><strong>— Director, Despacho Fiscal Monterrey</strong>
+                    </p>
+                </article>
+            </section>
+
+        <section class="products" id="productos">
+            <div class="container">
+                <h2>Los Colores de tu Claridad</h2>
+                <p class="products-subtitle">
+                    Cada Agente Aurys es una luz especializada que ilumina un área crítica de tu negocio, transformando desafíos específicos en ventajas competitivas.
+                </p>
+                <div class="products-grid">
+                    <!-- Agente de Contenido -->
+                    <article class="product-card">
+                        <div class="product-info">
+                            <div class="product-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+                            <h3>Estratega de Contenido</h3>
+                            <div class="product-price">$3,500 <span>MXN (Pago Único)</span></div>
+                            <p>El sistema de IA para escalar la creación de contenido de alta calidad, optimizado para atraer, educar y convertir a tu audiencia ideal.</p>
+                            <a href="#contacto" class="cta-secondary">Adquirir Agente</a>
+                        </div>
+                        <div class="product-deliverables">
+                            <h4>Capacidades y Entregables:</h4>
+                            <ul>
+                                <li>Artículos de Blog Optimizados para SEO</li>
+                                <li>Guiones para Vídeos (YouTube, TikTok, Reels)</li>
+                                <li>Secuencias de Email Marketing</li>
+                                <li>Copy para Redes Sociales (LinkedIn, Instagram)</li>
+                                <li>Investigación y Estructuración de Temas</li>
+                            </ul>
+                        </div>
+                    </article>
+                    <!-- Agente Laboral -->
+                    <article class="product-card">
+                        <div class="product-info">
+                            <div class="product-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg></div>
+                            <h3>Especialista Laboral</h3>
+                            <div class="product-price">$3,500 <span>MXN (Pago Único)</span></div>
+                            <p>El sistema de IA para candidatos que buscan una ventaja competitiva, transformando su perfil profesional para maximizar sus oportunidades de éxito.</p>
+                            <a href="#contacto" class="cta-secondary">Adquirir Agente</a>
+                        </div>
+                        <div class="product-deliverables">
+                            <h4>Capacidades y Entregables:</h4>
+                            <ul>
+                                <li>Análisis de Compatibilidad (CV vs. Puesto)</li>
+                                <li>Optimización Estratégica de CV</li>
+                                <li>Creación/Optimización de Cartas de Presentación</li>
+                                <li>Estrategia de Preparación para Entrevistas</li>
+                                <li>Optimización de Perfil de LinkedIn</li>
+                            </ul>
+                        </div>
+                    </article>
+                    <!-- Agente Developer -->
+                    <article class="product-card">
+                        <div class="product-info">
+                            <div class="product-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div>
+                            <h3>Developer VB/Lisp</h3>
+                            <div class="product-price">$3,500 c/u <span>MXN (Pago Único)</span></div>
+                            <p>El sistema de IA para modernizar y automatizar tareas en código legacy, liberando a tu equipo para que se enfoque en la innovación.</p>
+                            <a href="#contacto" class="cta-secondary">Adquirir Agente</a>
+                        </div>
+                        <div class="product-deliverables">
+                            <h4>Capacidades y Entregables:</h4>
+                            <ul>
+                                <li>Automatización de Tareas en Excel (VBA)</li>
+                                <li>Modernización y Refactorización de Scripts</li>
+                                <li>Generación de Documentación de Código</li>
+                                <li>Traducción de Lógica a Lenguajes Modernos</li>
+                                <li>Asistente de Debugging y Optimización</li>
+                            </ul>
+                        </div>
+                    </article>
+                    <!-- Agente CAD -->
+                     <article class="product-card">
+                        <span class="badge">Próximamente</span>
+                        <div class="product-info">
+                            <div class="product-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg></div>
+                            <h3>Mentor de Diseño CAD</h3>
+                            <div class="product-price">$3,500 <span>MXN (Pago Único)</span></div>
+                            <p>Tu asistente de diseño experto, listo para resolver dudas, guiar en las mejores prácticas y acelerar tu flujo de trabajo en entornos CAD.</p>
+                            <a href="#contacto" class="cta-secondary">Enlistarme en la Espera</a>
+                        </div>
+                        <div class="product-deliverables">
+                            <h4>Capacidades y Entregables:</h4>
+                            <ul>
+                                <li>Guía Completa de Troubleshooting</li>
+                                <li>Prácticas y Consejos de Diseño Avanzado</li>
+                                <li>Explicación de Funciones y Herramientas</li>
+                                <li>Optimización de Flujos de Trabajo</li>
+                                <li>Asistente para Creación de Componentes</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="packages" id="constelaciones">
+            <div class="container">
+                <h2>Constelaciones de Poder</h2>
+                <p class="packages-subtitle">
+                    Combina agentes para crear tu propio ecosistema de claridad, una solución integral que transforma cada aspecto de tu operación con un valor excepcional.
+                </p>
+                <div class="packages-grid">
+                    <article class="package-card">
+                        <h3>Constelación Startup</h3>
+                        <div class="package-price">$7,500 <span>MXN (Pago Único)</span></div>
+                        <div class="package-savings">Ahorras $3,000 - Claridad completa</div>
+                        <ul class="package-features">
+                            <li>Agente Estratega de Contenido</li>
+                            <li>Agente Especialista Laboral</li>
+                            <li>Agente adicional de tu elección</li>
+                            <li>Guía de orquestación del ecosistema</li>
+                        </ul>
+                        <a href="#contacto" class="cta-secondary">Crear Constelación</a>
+                    </article>
+                    <article class="package-card featured">
+                        <div class="package-badge">Más Espectacular</div>
+                        <h3>Constelación Operacional</h3>
+                        <div class="package-price">$6,500 <span>MXN (Pago Único)</span></div>
+                        <div class="package-savings">Ahorras $2,000 - Sinergia luminosa</div>
+                        <ul class="package-features">
+                            <li>Agente Especialista Laboral</li>
+                            <li>Agente Developer VB/Lisp</li>
+                            <li>Protocolo de sincronización de agentes</li>
+                            <li>Capacitación en automatización</li>
+                        </ul>
+                        <a href="#contacto" class="cta-primary">Activar Constelación</a>
+                    </article>
+                    <article class="package-card">
+                        <h3>Constelación a Medida</h3>
+                        <div class="package-price">Desde $8,500 <span>MXN</span></div>
+                        <div class="package-savings">Tu ecosistema único</div>
+                        <ul class="package-features">
+                            <li>Agente diseñado para tu necesidad específica</li>
+                            <li>Consultoría en automatización de procesos</li>
+                            <li>Implementación de ecosistema completo</li>
+                            <li>Masterclass en dominio del sistema</li>
+                        </ul>
+                        <a href="#contacto" class="cta-secondary">Diseñar Ecosistema</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="referrals" id="referidos">
+            <div class="container">
+                <h2>Expande la Aurora</h2>
+                <p class="referrals-subtitle">
+                    Creemos en el poder de la comunidad. Comparte la claridad de Aurys y obtén recompensas extraordinarias a través de nuestro programa de referidos.
+                </p>
+                <div class="referrals-grid">
+                    <article class="referral-card">
+                        <h3>Tier 1: Referido Básico</h3>
+                        <ul>
+                            <li><strong>Referente Recibe:</strong> $1,000 MXN en crédito para tu próxima compra.</li>
+                            <li><strong>Referido Recibe:</strong> 10% de descuento en su primer Agente ($350 de ahorro).</li>
+                            <li><strong>Límite:</strong> Sin límite de referidos. Créditos expiran en 12 meses.</li>
+                        </ul>
+                    </article>
+                    <article class="referral-card">
+                        <h3>Tier 2: Embajador</h3>
+                        <ul>
+                            <li><strong>Requisito:</strong> 3+ referidos exitosos.</li>
+                            <li><strong>Referente Recibe:</strong> $1,500 MXN en crédito por cada nuevo referido.</li>
+                            <li><strong>Referido Recibe:</strong> 15% de descuento ($525 de ahorro).</li>
+                            <li><strong>Bonus:</strong> Acceso anticipado a nuevos Agentes.</li>
+                        </ul>
+                    </article>
+                    <article class="referral-card">
+                        <h3>Tier 3: Partner</h3>
+                        <ul>
+                            <li><strong>Requisito:</strong> 5+ referidos y $25k+ generados.</li>
+                            <li><strong>Revenue Share:</strong> 8% de comisión recurrente.</li>
+                            <li><strong>Referido Recibe:</strong> 20% de descuento.</li>
+                            <li><strong>Beneficios:</strong> Oportunidades de co-marketing y desarrollo de agentes a medida.</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="final-cta" id="contacto">
+            <div class="container">
+                <h2>¿Listo para la Claridad?</h2>
+                <p>
+                    Si estás listo para dejar de perder tiempo en el caos operativo y empezar a generar resultados medibles, el siguiente paso es simple. Hablemos de cómo Aurys puede iluminar tu negocio.
+                </p>
+                <form action="https://formspree.io/f/YOUR_UNIQUE_FORM_ID" method="POST" class="contact-form">
+                    <!-- 
+                        INSTRUCCIÓN IMPORTANTE: 
+                        1. Ve a formspree.io y crea una cuenta gratuita.
+                        2. Crea un nuevo formulario y obtendrás una URL como "https://formspree.io/f/xxxxxxxx".
+                        3. Reemplaza "YOUR_UNIQUE_FORM_ID" en la línea de 'action' con tu ID real.
+                        ¡Y listo! Los mensajes del formulario llegarán a tu correo.
+                    -->
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">¿Cuál es el mayor desafío o área de complejidad en tu negocio actualmente?</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Solicitar una Consulta</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Aurys</h3>
+                    <p>El sistema de IA que convierte la complejidad operativa en una ventaja competitiva medible y predecible.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Nuestra Metodología</h3>
+                    <p>Creemos en la ciencia de los resultados. Transformamos el caos en un flujo de trabajo optimizado para el máximo ROI.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Inicia la Conversación</h3>
+                    <p>¿Listo para transformar tu estrategia? Completa el formulario de contacto y hablemos de tu proyecto.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Aurys México. Donde la Complejidad se Transforma en Claridad.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
+        });
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+        // Intersection Observer for animations
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        // Observe elements for animation
+        document.querySelectorAll('.methodology-card, .product-card, .package-card, .case-content, .system-card, .referral-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(40px)';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
