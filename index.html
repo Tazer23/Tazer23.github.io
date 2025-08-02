@@ -620,22 +620,58 @@
                 <p class="section-subtitle">
                     Si estás listo para dejar de perder tiempo en el caos operativo y empezar a generar resultados medibles, el siguiente paso es simple. Hablemos de cómo Aurys puede iluminar tu negocio.
                 </p>
-                <form action="https://formspree.io/f/YOUR_UNIQUE_FORM_ID" method="POST" class="contact-form">
+                <form id="contactForm" class="contact-form">
                     <div class="form-group">
-                        <label for="name">Nombre</label>
-                        <input type="text" id="name" name="name" required>
+                        <label for="contact-name">Nombre</label>
+                        <input type="text" id="contact-name" name="name" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Correo Electrónico</label>
-                        <input type="email" id="email" name="email" required>
+                        <label for="contact-email">Correo Electrónico</label>
+                        <input type="email" id="contact-email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="message">¿Cuál es el mayor desafío o área de complejidad en tu negocio actualmente?</label>
-                        <textarea id="message" name="message" rows="4" required></textarea>
+                        <label for="contact-message">¿Cuál es el mayor desafío o área de complejidad en tu negocio actualmente?</label>
+                        <textarea id="contact-message" name="message" rows="4" required></textarea>
                     </div>
-                    <button type="submit" class="form-submit">Solicitar una Consulta</button>
+                    <button type="submit" class="form-submit" id="contact-submit">Solicitar una Consulta</button>
+                    <div id="form-status" style="margin-top:1.5rem; text-align:center; font-weight:600;"></div>
                 </form>
-            </div>
+                <script>
+                    const scriptURL = 'https://script.google.com/macros/s/AKfycbyRJYrRaK-q1-K2RDhynosxQIxQMh462TnY6Zo41oFcuwnmeOEkEsUMMtN5nEdxJt-gDQ/exec';
+                    const form = document.getElementById('contactForm');
+                    const statusDiv = document.getElementById('form-status');
+                    const submitBtn = document.getElementById('contact-submit');
+
+                    form.addEventListener('submit', async function(e) {
+                        e.preventDefault();
+                        statusDiv.textContent = 'Enviando...';
+                        statusDiv.style.color = '#00FFFF';
+                        submitBtn.disabled = true;
+                        submitBtn.style.opacity = '0.6';
+
+                        const formData = new FormData(form);
+
+                        try {
+                            const response = await fetch(scriptURL, { 
+                                method: 'POST', 
+                                body: formData,
+                                mode: 'no-cors'
+                            });
+                            
+                            // Con modo no-cors, asumimos éxito si no hay error
+                            statusDiv.textContent = '¡Gracias! Tu mensaje ha sido enviado.';
+                            statusDiv.style.color = '#00FF7F';
+                            form.reset();
+                            
+                        } catch (error) {
+                            statusDiv.textContent = 'Ocurrió un error. Intenta de nuevo más tarde.';
+                            statusDiv.style.color = '#FF1493';
+                        }
+                        
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = '1';
+                    });
+                </script>            </div>
         </section>
     </main>
 
