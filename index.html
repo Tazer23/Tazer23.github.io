@@ -8,6 +8,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZDV3BCGRQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZZDV3BCGRQ');
+    </script>
+    
     <style>
         :root {
             --aurora-cyan: #00FFFF;
@@ -662,6 +672,12 @@
                             statusDiv.textContent = '¡Gracias! Tu mensaje ha sido enviado.';
                             statusDiv.style.color = '#00FF7F';
                             form.reset();
+
+                            // Track form submission
+                            gtag('event', 'form_submit', {
+                                'event_category': 'Contact',
+                                'event_label': 'Contacto Principal'
+                            });
                             
                         } catch (error) {
                             statusDiv.textContent = 'Ocurrió un error. Intenta de nuevo más tarde.';
@@ -671,7 +687,8 @@
                         submitBtn.disabled = false;
                         submitBtn.style.opacity = '1';
                     });
-                </script>            </div>
+                </script>
+            </div>
         </section>
     </main>
 
@@ -698,6 +715,32 @@
     </footer>
 
     <script>
+        // Fake Door Event Tracking for CTA Buttons
+        document.addEventListener('DOMContentLoaded', function () {
+            // Track all CTA buttons with specific texts for fake door testing
+            const trackedTexts = [
+                "Adquirir Agente",
+                "Crear Constelación", 
+                "Activar Constelación",
+                "Diseñar Ecosistema",
+                "Aplicar al Framework",
+                "Enlistarme en la Espera"
+            ];
+            
+            // Track CTA clicks
+            document.querySelectorAll('a, button').forEach(function(btn) {
+                if (trackedTexts.includes(btn.textContent.trim())) {
+                    btn.addEventListener('click', function() {
+                        gtag('event', 'fake_door_cta_click', {
+                            'event_category': 'Fake Door Test',
+                            'event_label': btn.textContent.trim(),
+                            'page_section': this.closest('section').id || 'unknown'
+                        });
+                    });
+                }
+            });
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -712,6 +755,7 @@
                 }
             });
         });
+        
         // Mobile menu toggle
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
@@ -719,6 +763,7 @@
             navLinks.classList.toggle('active');
             menuToggle.classList.toggle('active');
         });
+        
         // Intersection Observer for animations
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver(function(entries, observer) {
@@ -731,6 +776,7 @@
                 }
             });
         }, observerOptions);
+        
         // Observe elements for animation
         document.querySelectorAll('.methodology-card, .product-card, .package-card, .case-content, .system-card, .referral-card, .framework-card').forEach(el => {
             el.style.opacity = '0';
